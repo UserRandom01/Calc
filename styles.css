@@ -1,0 +1,208 @@
+:root {
+  --ffPoppins: "Poppins", sans-serif;
+  --ffRubik: "Rubik", sans-serif;
+  --ffInter: "Inter", sans-serif;
+
+  --color1: #f4f4f9;
+  --color2: #f97316;
+  --color3: #10b981;
+  --color4: #ef4444;
+  --color5: #111827;
+  --color6: #e5e7eb;
+  --color7: #111827;
+
+  --colorBody: #000;
+  --colorNavBar: #222;
+  --colorText: #fff;
+  --numbersBgClr: #333333;
+  --operatorsBgClt: #ff9f0a;
+  --otherBtnsBgClr: #a5a5a5;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+svg {
+  fill: var(--colorText);
+}
+/* HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING----HEADER STYLING---- */
+header {
+  height: 65px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  align-content: center;
+  display: flex;
+  justify-content: space-between;
+}
+.calcIcon {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.title {
+  font-size: 1.25rem;
+}
+.calcIcon svg {
+  height: 100%;
+  width: 100%;
+  fill: var(--colorText);
+  animation: iconRotater 5s ease infinite;
+  padding: 20px;
+  padding-right: 8px;
+}
+@keyframes iconRotater {
+  0% {
+    transform: rotate(0);
+  }
+  90% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+.menuIconCnt {
+  height: 65px;
+  width: 65px;
+  padding: 20px;
+  display: none;
+}
+
+.menuNavBar {
+  height: 100vh;
+  --navBarWidth: 240px;
+  transform: translate(var(--navBarWidth));
+  width: var(--navBarWidth);
+  background: var(--colorBody);
+  position: fixed;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  transition: 0.3s ease;
+  z-index: 1;
+  background: var(--colorNavBar);
+  padding: 12px;
+}
+.filterBlur {
+  filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+/* BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING---- */
+
+body {
+  background: var(--colorBody);
+  color: var(--colorText);
+  width: 100vw;
+  height: 100vh;
+  font-family: var(--ffPoppins);
+}
+.calculatorCnt {
+  height: 100dvh;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  transition: 0.3s ease;
+  overflow: hidden;
+}
+.displayContainer {
+  padding: 12px 0;
+  font-size: 4em;
+  text-align: right;
+  margin-bottom: 48px;
+}
+.inputDisplay {
+  overflow: auto;
+  white-space: nowrap;
+  height: 96px;
+}
+.inputDisplay::-webkit-scrollbar {
+  display: none;
+}
+
+.buttonsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.buttonClass {
+  all: unset;
+  background: var(--numbersBgClr);
+  font-size: 1em;
+  border: none;
+  align-content: center;
+  text-align: center;
+  font-size: 2em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-weight: 450;
+  transition: 50ms ease;
+  cursor: pointer;
+  user-select: none;
+}
+.buttonClass:active {
+  background: rgba(51, 51, 51, 0.75);
+}
+.operator {
+  background: var(--operatorsBgClt);
+  font-family: var(--ffRubik);
+}
+.operator:active {
+  background: rgba(255, 157, 10, 0.75);
+}
+.otherBtns {
+  background: var(--otherBtnsBgClr);
+  font-family: var(--ffRubik);
+  color: var(--colorBody);
+}
+.otherBtns:active {
+  background: rgba(165, 165, 165, 0.75);
+}
+.fontSize3em {
+  font-size: 3em;
+}
+.zeroBtn {
+  grid-column: span 2;
+  aspect-ratio: 0;
+  border-radius: 48px;
+  text-align: start;
+  padding-left: 24px;
+}
+
+/* .hideButtonsClass {
+  scale: 0;
+} */
+/* MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES---- */
+@media screen and (min-width: 420px) {
+  section {
+    overflow: hidden;
+  }
+  .calculatorCnt {
+    width: 80%;
+    margin: auto;
+  }
+  .displayContainer {
+    margin-bottom: 12px;
+    min-height: 120px;
+  }
+
+  .calculatorCnt {
+    height: calc(100vh - 65px);
+    overflow: hidden;
+    margin-top: 65px;
+  }
+  .buttonsContainer {
+    height: 75%;
+  }
+  .buttonClass {
+    border-radius: 24px;
+    aspect-ratio: inherit;
+  }
+}
