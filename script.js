@@ -1,64 +1,87 @@
-let buttons = document.querySelectorAll(".buttonClass");
 let inputDisplay = document.querySelector(".inputDisplay");
-let quickResultDisplayer = document.querySelector(".immediateResultDisplayer");
+let autoClaculatedValueDisplayer = document.querySelector(
+  ".autoClaculatedValueDisplayer"
+);
+
+let buttons = document.querySelectorAll(".buttonClass");
 
 let currentEquation = "";
 let equationLength = 0;
 let isOpeningParenthesis = true;
 
+let operatorsArray = ["+", "-", "*", "/", "%", "(", ")"];
+
 buttons.forEach((button) => {
-  changeParenthesis();
+  let clickedValue = button.getAttribute("id");
   button.addEventListener("click", () => {
     buttonClickVibration();
-    let inputValue = button.getAttribute("id");
-
-    if (inputValue === "=") {
-      calculateSum();
-      isOpeningParenthesis = true;
-    } else if (
-      inputValue === "idAllClear" ||
-      inputDisplay.innerHTML === "ERROR"
-    ) {
+    if (clickedValue === "=") {
+      calculateValue();
+    } else if (clickedValue === "idAllClear") {
+      inputDisplay.value = "";
       currentEquation = "";
-      inputDisplay.innerHTML = "";
       equationLength = 0;
-      isOpeningParenthesis = true;
+      autoClaculatedValueDisplayer.innerText = "0";
+    } else if (clickedValue === "delete") {
+      currentEquation = currentEquation.slice(0, -1);
+      inputDisplay.value = currentEquation;
+      equationLength = currentEquation.length;
     } else {
-      inputDisplay.style.color = "var(--colorText)";
-      currentEquation += inputValue;
-      inputDisplay.innerHTML = currentEquation;
+      currentEquation += clickedValue;
+      inputDisplay.value = currentEquation;
       equationLength++;
+
+      inputDisplayToRight();
+
+      if (operatorsArray.every((operator) => operator !== clickedValue)) {
+        autoCalculate();
+      }
     }
-    equationFontSize(equationLength);
+    displayInputSize();
   });
 });
 
-function calculateSum() {
-  try {
-    resultsOfEquation = eval(currentEquation);
-    inputDisplay.innerText = resultsOfEquation;
-    equationLength = 0;
-  } catch (error) {
-    resultErrorVibration();
-    inputDisplay.innerText = "ERROR";
-    inputDisplay.style.color = "red";
-    equationLength = 0;
+function displayInputSize() {
+  if (equationLength <= 10) {
+    inputDisplay.style.fontSize = "4em";
+  } else if (equationLength === 11) {
+    inputDisplay.style.fontSize = "3.5em";
+  } else if (equationLength === 12) {
+    inputDisplay.style.fontSize = "3.2em";
+  } else if (equationLength === 13) {
+    inputDisplay.style.fontSize = "2.9em";
+  } else if (equationLength >= 14) {
+    inputDisplay.style.fontSize = "2.6em";
   }
 }
 
-function changeParenthesis() {
-  let parenthesisDiv = document.querySelector(".parenthesisClass");
-  parenthesisDiv.addEventListener("click", () => {
-    if (isOpeningParenthesis) {
-      parenthesisDiv.setAttribute("id", ")");
-      isOpeningParenthesis = false;
-    } else {
-      parenthesisDiv.setAttribute("id", "(");
-      isOpeningParenthesis = true;
+function calculateValue() {
+  let equationsLastChar = currentEquation.charAt(currentEquation.length - 1);
+  if (operatorsArray.every((operator) => operator !== equationsLastChar)) {
+    try {
+      currentEquation = eval(currentEquation);
+      inputDisplay.value = currentEquation;
+      autoClaculatedValueDisplayer.innerText = "";
+    } catch (error) {
+      resultErrorVibration();
+      inputDisplay.value = "ERROR";
+      autoClaculatedValueDisplayer.innerText = "";
     }
-  });
+  } else {
+    alert(`Equations last value cannot be ${equationsLastChar} `);
+  }
 }
 
+function autoCalculate() {
+  try {
+    autoCalculatedEquation = eval(currentEquation);
+    autoClaculatedValueDisplayer.innerText = autoCalculatedEquation;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// VIBRATION ON BUTTONCLICK FUNCTION
 function buttonClickVibration() {
   if (navigator.vibrate) {
     navigator.vibrate(20);
@@ -66,7 +89,7 @@ function buttonClickVibration() {
     alert("Vibration API not supported on this device.");
   }
 }
-
+// VIBRATION ON ERROR FUNCTION
 function resultErrorVibration() {
   if (navigator.vibrate) {
     navigator.vibrate(300);
@@ -75,13 +98,13 @@ function resultErrorVibration() {
   }
 }
 
+// BUTTONS HIDING FUNCTION
 function hideButtonsFunction() {
   let buttonsCnt = document.querySelector(".buttonsContainer");
-
   buttonsCnt.classList.add("hideButtonsClass");
 }
+// BUTTONS UNHIDING FUNCTION
 function showButtonsFunction() {
   let buttonsCnt = document.querySelector(".buttonsContainer");
-
   buttonsCnt.classList.remove("hideButtonsClass");
 }
