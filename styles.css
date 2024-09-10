@@ -45,24 +45,23 @@ header {
 }
 .title {
   font-size: 1.25rem;
+  animation: letterSpacing 10s ease alternate infinite;
 }
 .calcIcon svg {
   height: 100%;
   width: 100%;
   fill: var(--colorText);
-  animation: iconRotater 5s ease infinite;
   padding: 20px;
   padding-right: 8px;
 }
-@keyframes iconRotater {
-  0% {
-    transform: rotate(0);
-  }
-  90% {
-    transform: rotate(0);
+@keyframes letterSpacing {
+  95% {
+    letter-spacing: initial;
+    color: unset;
   }
   100% {
-    transform: rotateX(360deg) rotateY(360deg);
+    letter-spacing: 1px;
+    color: red;
   }
 }
 .menuIconCnt {
@@ -92,6 +91,10 @@ header {
   transition: all 0.3s ease;
 }
 
+.hideButtonsClass {
+  scale: 0;
+}
+
 /* BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING----BODY STYLING---- */
 
 body {
@@ -112,17 +115,31 @@ body {
 }
 .displayContainer {
   padding: 12px 0;
-  font-size: 4em;
-  text-align: right;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
+  font-size: 1em;
 }
 .inputDisplay {
   overflow: auto;
   white-space: nowrap;
   height: 96px;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  color: var(--colorText);
+  text-align: right;
+  font-size: 4em;
 }
 .inputDisplay::-webkit-scrollbar {
   display: none;
+}
+.inputDisplay:focus,
+.inputDisplay:active {
+  outline: 0;
+}
+.autoClaculatedValueDisplayer {
+  text-align: right;
+  margin-right: 12px;
+  font-size: 1.8em;
 }
 
 .buttonsContainer {
@@ -175,10 +192,10 @@ body {
   text-align: start;
   padding-left: 24px;
 }
+.deleteBtnClass {
+  font-size: 1.4em;
+}
 
-/* .hideButtonsClass {
-  scale: 0;
-} */
 /* MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES---- */
 @media screen and (min-width: 420px) {
   section {
