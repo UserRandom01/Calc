@@ -39,14 +39,15 @@
     <section class="calcSection">
       <div class="calculatorCnt">
         <div class="displayContainer">
-          <div class="inputDisplay">000</div>
+          <input type="text" class="inputDisplay" />
+          <div class="autoClaculatedValueDisplayer"></div>
         </div>
         <div class="buttonsContainer">
           <!--  -->
 
           <button class="buttonClass otherBtns" id="idAllClear">AC</button>
-          <button class="buttonClass otherBtns parenthesisClass" id="(">
-            ( )
+          <button class="buttonClass otherBtns deleteBtnClass" id="delete">
+            DEL
           </button>
           <button class="buttonClass otherBtns" id="%">%</button>
           <button class="buttonClass operator fontSize3em" id="/">÷</button>
@@ -77,11 +78,9 @@
     <script src="script.js"></script>
     <script>
       //function to make new input visible on the screen
-      buttons.forEach((button) => {
-        addEventListener("click", function () {
-          inputDisplay.scrollLeft = inputDisplay.scrollWidth;
-        });
-      });
+      function inputDisplayToRight() {
+        inputDisplay.scrollLeft = inputDisplay.scrollWidth;
+      }
 
       //function to make the text smaller if exceeds 11 characters
       function equationFontSize(equationLength) {
