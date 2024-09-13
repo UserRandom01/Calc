@@ -45,7 +45,6 @@ header {
 }
 .title {
   font-size: 1.25rem;
-  animation: letterSpacing 10s ease alternate infinite;
 }
 .calcIcon svg {
   height: 100%;
@@ -54,16 +53,7 @@ header {
   padding: 20px;
   padding-right: 8px;
 }
-@keyframes letterSpacing {
-  95% {
-    letter-spacing: initial;
-    color: unset;
-  }
-  100% {
-    letter-spacing: 1px;
-    color: red;
-  }
-}
+
 .menuIconCnt {
   height: 65px;
   width: 65px;
@@ -197,29 +187,95 @@ body {
 }
 
 /* MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES----MEDIAQUERIES---- */
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 450px) {
   section {
     overflow: hidden;
   }
   .calculatorCnt {
+    height: calc(100vh - 65px);
+    overflow: hidden;
     width: 80%;
     margin: auto;
+    margin-top: 65px;
   }
   .displayContainer {
     margin-bottom: 12px;
     min-height: 120px;
   }
 
-  .calculatorCnt {
-    height: calc(100vh - 65px);
-    overflow: hidden;
-    margin-top: 65px;
+  .autoClaculatedValueDisplayer {
+    min-height: 44px;
   }
+
   .buttonsContainer {
     height: 75%;
   }
   .buttonClass {
     border-radius: 24px;
     aspect-ratio: inherit;
+  }
+}
+@media screen and (max-width: 350px) {
+  * {
+    display: none;
+  }
+}
+@media only screen and (max-height: 630px) {
+  .buttonsContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .buttonClass:nth-child(5) {
+    grid-row-start: 1;
+  }
+  .buttonClass:nth-child(6) {
+    grid-row-start: 1;
+  }
+  .buttonClass:nth-child(7) {
+    grid-row: 1;
+  }
+
+  .buttonClass:nth-child(9) {
+    grid-row: 2;
+  }
+  .buttonClass:nth-child(10) {
+    grid-row: 2;
+  }
+  .buttonClass:nth-child(11) {
+    grid-row: 2;
+  }
+  .buttonClass:nth-child(13) {
+    grid-row: 3;
+  }
+  .buttonClass:nth-child(14) {
+    grid-row: 3;
+  }
+  .buttonClass:nth-child(15) {
+    grid-row: 3;
+  }
+  .buttonClass:nth-child(17) {
+    grid-row: 4;
+  }
+  .buttonClass:nth-child(18) {
+    grid-row: 4;
+  }
+  .buttonClass:nth-child(4) {
+    grid-row: 1;
+    grid-column: 4;
+  }
+  .buttonClass:nth-child(8) {
+    grid-row: 2;
+    grid-column: 4;
+  }
+  .buttonClass:nth-child(12) {
+    grid-row: 3;
+    grid-column: 4;
+  }
+}
+@media only screen and (max-height: 490px) {
+  * {
+    display: none;
   }
 }
