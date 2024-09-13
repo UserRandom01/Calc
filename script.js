@@ -21,11 +21,17 @@ buttons.forEach((button) => {
       inputDisplay.value = "";
       currentEquation = "";
       equationLength = 0;
-      autoClaculatedValueDisplayer.innerText = "0";
+      autoClaculatedValueDisplayer.innerText = "";
     } else if (clickedValue === "delete") {
       currentEquation = currentEquation.slice(0, -1);
       inputDisplay.value = currentEquation;
       equationLength = currentEquation.length;
+
+      if (equationLength === 0) {
+        autoClaculatedValueDisplayer.innerText = "";
+      } else if (equationLength >= 1) {
+        autoCalculate();
+      }
     } else {
       currentEquation += clickedValue;
       inputDisplay.value = currentEquation;
@@ -66,6 +72,7 @@ function calculateValue() {
       resultErrorVibration();
       inputDisplay.value = "ERROR";
       autoClaculatedValueDisplayer.innerText = "";
+      currentEquation = "";
     }
   } else {
     alert(`Equations last value cannot be ${equationsLastChar} `);
@@ -107,4 +114,46 @@ function hideButtonsFunction() {
 function showButtonsFunction() {
   let buttonsCnt = document.querySelector(".buttonsContainer");
   buttonsCnt.classList.remove("hideButtonsClass");
+}
+
+//Caching Code
+const cacheName = "calculator-cache-v1";
+const assetsToCache = [
+  "/", // Root directory
+  "/index.html", // Your HTML file
+  "/styles.css", // Your CSS file
+  "/script.js", // Your JavaScript file for the calculator
+  // Add any other assets like icons, images if needed
+];
+
+// Install event - caches all assets
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      console.log("Caching assets");
+      return cache.addAll(assetsToCache);
+    })
+  );
+});
+
+// Fetch event - serves cached assets when offline
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
+  );
+});
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((reg) => {
+        console.log("Service Worker registered:", reg.scope);
+      })
+      .catch((err) => {
+        console.error("Service Worker registration failed:", err);
+      });
+  });
 }
